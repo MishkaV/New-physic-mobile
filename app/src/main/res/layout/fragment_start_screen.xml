@@ -1,0 +1,67 @@
+<layout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_start"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorMainWhite"
+            android:fontFamily="@font/rubik_bold"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="48sp"
+            android:text="Виртуальные лабораторные работы по физике"
+            />
+        <LinearLayout
+            android:id="@+id/frameButtons"
+            android:background="@color/colorMainWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:layout_alignParentBottom="true"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_login"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:strokeWidth="2dp"
+                app:cornerRadius="15dp"
+                android:backgroundTint="@color/colorMainWhite"
+                app:strokeColor="@color/colorMainBlue"
+                android:textColor="@color/colorMainBlue"
+                android:textSize="14sp"
+                android:text="Войти"
+                android:fontFamily="@font/rubik_regular"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_registration"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:strokeWidth="2dp"
+                app:cornerRadius="15dp"
+                android:backgroundTint="@color/colorMainBlue"
+                app:strokeColor="@color/colorMainBlue"
+                android:textColor="@color/colorMainWhite"
+                android:text="Регистрация"
+                android:fontFamily="@font/rubik_regular"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
+
+

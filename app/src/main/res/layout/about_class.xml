@@ -1,0 +1,89 @@
+<layout>
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/aboutClassText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center_vertical"
+            android:text="О классе"
+            android:textSize="36sp" />
+
+
+        <TextView
+            android:id="@+id/aboutnNameClassText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/aboutClassText"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center_vertical"
+            android:text="Название класса"
+            android:textSize="30sp" />
+
+
+
+        <LinearLayout
+            android:id="@+id/codeClassLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aboutnNameClassText"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/titleCodeClassText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:text="Код класса"
+                android:textSize="36sp" />
+            <TextView
+                android:id="@+id/codeClassText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:textIsSelectable="true"
+                android:text="2d28709a-1bae-4fb3-9705-2e534a88dc6a"
+                android:textSize="30sp" />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/aboutClassButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/codeClassLayout"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorMainBlue"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Готово"
+            android:textColor="@color/colorMainWhite"
+            app:cornerRadius="15dp"
+            app:strokeColor="@color/colorMainBlue"
+            app:strokeWidth="2dp" />
+    </RelativeLayout>
+</layout>

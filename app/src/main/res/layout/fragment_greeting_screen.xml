@@ -1,0 +1,40 @@
+<layout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="data_greeting.json"
+            app:lottie_loop="true" />
+
+
+        <TextView
+            android:id="@+id/greetingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|center_horizontal"
+            android:fontFamily="@font/rubik_black"
+            android:text="Добро пожаловать!"
+            android:textColor="@color/colorMainBlue"
+            android:textSize="32dp" />
+
+
+        <TextView
+            android:id="@+id/greetingMoreText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="bottom|center_horizontal"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Готовы к новым открытиям?\nТогда приступим!"
+            android:textColor="@color/colorMainBlue"
+            android:textSize="25dp" />
+    </LinearLayout>
+</layout>

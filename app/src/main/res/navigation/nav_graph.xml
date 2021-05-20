@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.physics_lab.ui.auth.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action android:id="@+id/action_welcomeFragment_to_registrationFullNameFragment"
+                app:destination="@id/registrationFullNameFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.physics_lab.ui.auth.signin.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_classListFragment"
+            app:destination="@id/classListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/classListFragment"
+        android:name="com.example.physics_lab.ui.class_list.ClassListFragment"
+        android:label="ClassListFragment" >
+        <action android:id="@+id/action_classListFragment_to_labListFragment" app:destination="@id/labListFragment"/>
+        <action android:id="@+id/action_classListFragment_to_joinClassFragment"
+                app:destination="@id/joinClassFragment"/>
+        <action
+            android:id="@+id/action_classListFragment_to_addClassFragment"
+            app:destination="@id/addClassFragment" />
+        <action android:id="@+id/action_classListFragment_to_welcomeFragment" app:destination="@id/welcomeFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/joinClassFragment"
+        android:name="com.example.physics_lab.ui.join_to_class.JoinClassFragment"
+        android:label="JoinClassFragment" />
+    <fragment
+        android:id="@+id/labListFragment"
+        android:name="com.example.physics_lab.ui.lab_list.LabListFragment"
+        android:label="LabListFragment" >
+
+        <action android:id="@+id/action_labListFragment_to_addLabFragment"
+                app:destination="@id/addLabFragment"/>
+        <action android:id="@+id/action_labListFragment_to_classDescriptionFragment"
+                app:destination="@id/classDescriptionFragment"/>
+        <action android:id="@+id/action_labListFragment_to_labDescriptionFragment"
+                app:destination="@id/labDescriptionFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFullNameFragment"
+        android:name="com.example.physics_lab.ui.auth.registration.reg_full_name.RegistrationFullName"
+        android:label="RegistrationFullNameFragment" >
+        <action android:id="@+id/action_registrationFullNameFragment_to_registrationEmailFragment"
+                app:destination="@id/registrationEmailFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationEmailFragment"
+        android:name="com.example.physics_lab.ui.auth.registration.reg_email.RegistrationEmail"
+        android:label="RegistrationEmailFragment" >
+        <action android:id="@+id/action_registrationEmailFragment_to_registrationRoleFragment"
+                app:destination="@id/registrationRoleFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationRoleFragment"
+        android:name="com.example.physics_lab.ui.auth.registration.reg_role.RegistrationRole"
+        android:label="RegistrationRoleFragment" >
+        <action android:id="@+id/action_registrationRoleFragment_to_registrationFinishFragment"
+                app:destination="@id/registrationFinishFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFinishFragment"
+        android:name="com.example.physics_lab.ui.auth.registration.reg_finish.RegistrationFinish"
+        android:label="RegistrationFinishFragment" >
+        <action android:id="@+id/action_registrationFinishFragment_to_classListFragment"
+                app:destination="@id/classListFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/addClassFragment"
+        android:name="com.example.physics_lab.ui.create_class.CreateClassFragment"
+        android:label="AddClassFragment" />
+
+    <fragment
+        android:id="@+id/addLabFragment"
+        android:name="com.example.physics_lab.ui.add_lab.AddLabFragment"
+        android:label="AddLabFragment" />
+    <fragment
+        android:id="@+id/classDescriptionFragment"
+        android:name="com.example.physics_lab.ui.class_description.ClassDescription"
+        android:label="ClassDescriptionFragment" />
+    <fragment
+        android:id="@+id/labDescriptionFragment"
+        android:name="com.example.physics_lab.ui.lab_description.LabDescription"
+        android:label="LabDescriptionFragment" />
+</navigation>

@@ -1,0 +1,91 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/codeClassLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/aboutClassText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/rubik_bold"
+            android:gravity="center_vertical"
+            android:text="О классе"
+            android:layout_weight="1"
+            android:textSize="36sp" />
+
+
+        <TextView
+            android:id="@+id/aboutNameClassText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center_vertical"
+            android:text="Название класса"
+            android:textSize="30sp" />
+
+
+            <TextView
+                android:id="@+id/titleCodeClassText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center_vertical"
+                android:text="Код класса"
+                android:textSize="36sp" />
+            <TextView
+                android:id="@+id/codeClassText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:textIsSelectable="true"
+                android:text="2d28709a-1bae-4fb3-9705-2e534a88dc6a"
+                android:textSize="30sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/aboutClassButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/colorMainBlue"
+                android:fontFamily="@font/rubik_regular"
+                android:text="Готово"
+                android:textColor="@color/colorMainWhite"
+                app:cornerRadius="15dp"
+                app:strokeColor="@color/colorMainBlue"
+                app:strokeWidth="2dp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="data2.json"
+                app:lottie_loop="true"/>
+        </LinearLayout>
+</layout>

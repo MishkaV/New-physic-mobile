@@ -1,0 +1,93 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.physics_lab.ui.auth.registration.reg_role.RegistrationRoleViewModel" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="view.fragments.registrationScreen.RegistrationScreen3">
+
+        <TextView
+            android:id="@+id/registrationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center_vertical"
+            android:text="Регистрация"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/registrationWelcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registrationText"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center_vertical"
+            android:text="Кто же вы?"
+            android:textSize="32sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/registrationWelcomeText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:checkedButton="@id/radioButtonTeacher">
+
+            <RadioButton
+                android:id="@+id/radioButtonTeacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_regular"
+                android:text="Учитель"
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_regular"
+                android:text="Ученик"
+                android:textSize="24sp" />
+
+        </RadioGroup>
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registrationRoleButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorMainBlue"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Дальше"
+            android:textColor="@color/colorMainWhite"
+            app:cornerRadius="15dp"
+            app:strokeColor="@color/colorMainBlue"
+            app:strokeWidth="2dp" />
+
+    </RelativeLayout>
+</layout>
