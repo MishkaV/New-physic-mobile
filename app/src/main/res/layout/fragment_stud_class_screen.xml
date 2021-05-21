@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:fab="http://schemas.android.com/apk/res-auto">
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -27,50 +28,55 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="11">
-            <RelativeLayout
+
+            <LinearLayout
                 android:id="@+id/emptyLayout"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="invisible"
-            >
+                android:orientation="vertical"
+                android:weightSum="10"
+                >
 
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/emptyMainText"
+                    android:layout_height="0dp"
+                    android:layout_above="@+id/emptyLabMainText"
                     app:lottie_autoPlay="true"
                     app:lottie_fileName="data_not_found.json"
-                    app:lottie_loop="true"/>
+                    app:lottie_loop="true"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_weight="5"
+                    />
 
                 <TextView
                     android:id="@+id/emptyMainText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/rubik_black"
-                    android:gravity="center"
+                    android:gravity="bottom|center_horizontal"
                     android:layout_centerInParent="true"
-                    android:text="Пока нет ни одного класса!"
+                    android:text="Пока нет ни одной лабораторной работы!"
                     android:textColor="@color/colorMainBlue"
                     android:textSize="25dp" />
 
                 <TextView
                     android:id="@+id/emptyDesrpText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/emptyMainText"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
                     android:layout_marginHorizontal="15dp"
                     android:fontFamily="@font/rubik_regular"
-                    android:gravity="center"
-                    android:text="Попробуйте создать новый класс, нажав на кнопку добавления"
+                    android:gravity="top|center_horizontal"
+                    android:text="Стоит попробовать добавить новое задание"
                     android:textColor="@color/colorMainBlue"
                     android:textSize="22dp" />
 
-            </RelativeLayout>
+            </LinearLayout>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewStudClass"
             android:layout_width="match_parent"

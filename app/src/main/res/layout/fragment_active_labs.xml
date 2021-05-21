@@ -1,5 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto">
+        xmlns:fab="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,23 +12,23 @@
         android:weightSum="12">
 
         <TextView
-            android:id="@+id/classText"
+            android:id="@+id/activeLabText"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="16dp"
             android:gravity="center_vertical"
             android:fontFamily="@font/rubik_regular"
-            android:text="Лабораторные работы"
-            android:layout_weight="1.5"
-            android:textSize="36sp"/>
+            android:text="Активные работы"
+            android:layout_weight="1"
+            android:textSize="30sp"/>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10.5">
+            android:layout_weight="11">
             <LinearLayout
-                android:id="@+id/emptyLabLayout"
+                android:id="@+id/emptyActiveLabLayout"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -45,14 +45,14 @@
                     android:layout_height="0dp"
                     android:layout_above="@+id/emptyLabMainText"
                     app:lottie_autoPlay="true"
-                    app:lottie_fileName="data_on_verification.json"
+                    app:lottie_fileName="data_not_found2.json"
                     app:lottie_loop="true"
                     android:layout_marginHorizontal="15dp"
                     android:layout_weight="5"
                     />
 
                 <TextView
-                    android:id="@+id/emptyLabMainText"
+                    android:id="@+id/emptyActiveLabMainText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -64,7 +64,7 @@
                     android:textSize="25dp" />
 
                 <TextView
-                    android:id="@+id/emptyLabDesrpText"
+                    android:id="@+id/emptyActiveLabDesrpText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4"
@@ -76,28 +76,13 @@
                     android:textSize="22dp" />
 
             </LinearLayout>
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewLab"
+                android:id="@+id/recyclerViewStudActivehLab"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"/>
 
-            <com.getbase.floatingactionbutton.FloatingActionsMenu
-                android:id="@+id/menu_buttons_lab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                fab:fab_addButtonColorNormal="@color/colorMainBlue"
-                fab:fab_expandDirection="up"
-                fab:layout_constraintBottom_toBottomOf="parent"
-                fab:layout_constraintEnd_toEndOf="parent"
-                fab:fab_labelStyle="@style/menu_label_style">
 
-
-            </com.getbase.floatingactionbutton.FloatingActionsMenu>
         </FrameLayout>
     </LinearLayout>
 </layout>

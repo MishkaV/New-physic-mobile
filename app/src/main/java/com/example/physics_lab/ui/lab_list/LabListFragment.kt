@@ -3,6 +3,7 @@ package com.example.physics_lab.ui.lab_list
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -68,26 +69,55 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
             it.adapter = adapter
         }
     }
+
     private fun initButtons(view: View) {
         val floatMenu = view.findViewById<FloatingActionsMenu>(R.id.menu_buttons_lab)
         if (authService.role == "teacher") {
-            val floatAddLab = FloatingActionButton(context)
-            floatAddLab.title = "Добавить задание"
-            floatAddLab.setColorNormalResId(R.color.colorMainLightBlue)
-            floatAddLab.setOnClickListener {
-                navController.navigate(R.id.action_labListFragment_to_addLabFragment)
-            }
-            floatMenu.addButton(floatAddLab)
-
-            val floatDeleteClass = FloatingActionButton(context)
-            floatDeleteClass.title = "Удалить класс"
-            floatDeleteClass.setColorNormalResId(R.color.colorMainLightBlue)
-            floatDeleteClass.setOnClickListener {
-                viewModel.removeClass()
-            }
-            floatMenu.addButton(floatDeleteClass)
+            initTeacherButtons(floatMenu)
         }
+        else {
+            initStudentButtons(floatMenu)
+        }
+        initGeneralButtons(floatMenu)
+    }
 
+    private fun initTeacherButtons(floatMenu: FloatingActionsMenu) {
+        val floatAddLab = FloatingActionButton(context)
+        floatAddLab.title = "Добавить задание"
+        floatAddLab.setColorNormalResId(R.color.colorMainLightBlue)
+        floatAddLab.setOnClickListener {
+            navController.navigate(R.id.action_labListFragment_to_addLabFragment)
+        }
+        floatMenu.addButton(floatAddLab)
+
+        val floatDeleteClass = FloatingActionButton(context)
+        floatDeleteClass.title = "Удалить класс"
+        floatDeleteClass.setColorNormalResId(R.color.colorMainLightBlue)
+        floatDeleteClass.setOnClickListener {
+            viewModel.removeClass()
+        }
+        floatMenu.addButton(floatDeleteClass)
+    }
+
+    private fun initStudentButtons(floatMenu: FloatingActionsMenu) {
+        val floatActiveLab = FloatingActionButton(context)
+        floatActiveLab.title = "Активные работы"
+        floatActiveLab.setColorNormalResId(R.color.colorMainLightBlue)
+        floatActiveLab.setOnClickListener {
+            navController.navigate(R.id.action_labListFragment_to_activeLabsFragment)
+        }
+        floatMenu.addButton(floatActiveLab)
+
+        val floatFinishLab = FloatingActionButton(context)
+        floatFinishLab.title = "Завершенные работы"
+        floatFinishLab.setColorNormalResId(R.color.colorMainLightBlue)
+        floatFinishLab.setOnClickListener {
+            navController.navigate(R.id.action_labListFragment_to_finishLabFragment)
+        }
+        floatMenu.addButton(floatFinishLab)
+    }
+
+    private fun initGeneralButtons(floatMenu: FloatingActionsMenu) {
         val floatInfoClass = FloatingActionButton(context)
         floatInfoClass.title = "Информация о классе"
         floatInfoClass.setColorNormalResId(R.color.colorMainLightBlue)
@@ -119,7 +149,7 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
                 })
             }
             adapter.notifyDataSetChanged()
-            val emptyLabLayout = view.findViewById<RelativeLayout>(R.id.emptyLabLayout)
+            val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyLabLayout)
             if (adapter.itemCount == 0) {
                 initText(view)
                 emptyLabLayout.visibility = View.VISIBLE

@@ -48,6 +48,12 @@
                 app:destination="@id/classDescriptionFragment"/>
         <action android:id="@+id/action_labListFragment_to_labDescriptionFragment"
                 app:destination="@id/labDescriptionFragment"/>
+        <action
+            android:id="@+id/action_labListFragment_to_finishLabFragment"
+            app:destination="@id/finishLabFragment" />
+        <action
+            android:id="@+id/action_labListFragment_to_activeLabsFragment"
+            app:destination="@id/activeLabsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFullNameFragment"
@@ -95,4 +101,12 @@
         android:id="@+id/labDescriptionFragment"
         android:name="com.example.physics_lab.ui.lab_description.LabDescription"
         android:label="LabDescriptionFragment" />
+    <fragment
+        android:id="@+id/finishLabFragment"
+        android:name="com.example.physics_lab.ui.lab_list.finish_lab.FinishLab"
+        android:label="FinishLabFragment" />
+    <fragment
+        android:id="@+id/activeLabsFragment"
+        android:name="com.example.physics_lab.ui.lab_list.active_lab.ActiveLabs"
+        android:label="ActiveLabsFragment" />
 </navigation>

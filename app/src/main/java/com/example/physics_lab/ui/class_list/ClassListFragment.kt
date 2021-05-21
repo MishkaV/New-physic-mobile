@@ -3,6 +3,7 @@ package com.example.physics_lab.ui.class_list
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -107,7 +108,7 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
                 ClassListItem(it)
             })
             adapter.notifyDataSetChanged()
-            val emptyLayout = view.findViewById<RelativeLayout>(R.id.emptyLayout)
+            val emptyLayout = view.findViewById<LinearLayout>(R.id.emptyLayout)
             if (adapter.itemCount == 0) {
                 initText(view)
                 emptyLayout.visibility = View.VISIBLE

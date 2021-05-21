@@ -36,6 +36,9 @@ object ClassRepository : FuelNetworkService() {
         return getWithToken("Student/lab/${labId}", Lab::class.java, token)
     }
 
+    suspend fun loadActiveFinishLab(token: String): ActiveFinishData? {
+        return getWithToken("Student/solution", ActiveFinishData::class.java, token)
+    }
     //TEACHER API
     suspend fun createClass(token: String, name: String): SingleClassResponse {
         return SingleClassResponse(
