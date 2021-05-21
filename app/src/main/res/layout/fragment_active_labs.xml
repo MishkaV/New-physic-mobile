@@ -34,7 +34,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:orientation="vertical"
                 android:weightSum="10"
                 >
@@ -59,7 +59,7 @@
                     android:fontFamily="@font/rubik_black"
                     android:gravity="bottom|center_horizontal"
                     android:layout_centerInParent="true"
-                    android:text="Пока нет ни одной лабораторной работы!"
+                    android:text="Пока нет активных работ!"
                     android:textColor="@color/colorMainBlue"
                     android:textSize="25dp" />
 
@@ -71,7 +71,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:fontFamily="@font/rubik_regular"
                     android:gravity="top|center_horizontal"
-                    android:text="Стоит попробовать добавить новое задание"
+                    android:text="Возможно, стоит немного подождать и она появиться!"
                     android:textColor="@color/colorMainBlue"
                     android:textSize="22dp" />
 

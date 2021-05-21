@@ -2,6 +2,7 @@ package com.example.physics_lab.ui.lab_list.finish_lab
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.physics_lab.R
@@ -29,13 +30,26 @@ class FinishLab : BaseFragment<FragmentFinishLabBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
-        observeFields()
+        observeFields(view)
         loadActiveFinishData()
     }
 
-    private fun observeFields() {
+    private fun observeFields(view: View) {
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
-        viewModel.activeFinishData.observe(viewLifecycleOwner, activeFinishDatObserver)
+        viewModel.activeFinishData.observe(viewLifecycleOwner, { rawData ->
+            adapter.clear()
+            rawData.finishedSolutions.map {
+                LabListItem(it.lab)
+            }
+            adapter.notifyDataSetChanged()
+            val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyFinishLabLayout)
+            if (adapter.itemCount == 0) {
+                emptyLabLayout.visibility = View.VISIBLE
+            }
+            else {
+                emptyLabLayout.visibility = View.INVISIBLE
+            }
+        })
     }
 
     private fun setUpRecycler() {
@@ -47,11 +61,4 @@ class FinishLab : BaseFragment<FragmentFinishLabBinding>() {
 
     private fun  loadActiveFinishData() = viewModel.loadActiveFinishLab()
 
-    private val activeFinishDatObserver = Observer<ActiveFinishData> { rawData ->
-        adapter.clear()
-        rawData.finishedSolutions.map {
-            LabListItem(it.lab)
-        }
-        adapter.notifyDataSetChanged()
-    }
 }
