@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_labListFragment_to_activeLabsFragment"
             app:destination="@id/activeLabsFragment" />
+        <action
+            android:id="@+id/action_labListFragment_to_userListFragment"
+            app:destination="@id/userListFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFullNameFragment"
@@ -109,4 +112,8 @@
         android:id="@+id/activeLabsFragment"
         android:name="com.example.physics_lab.ui.lab_list.active_lab.ActiveLabs"
         android:label="ActiveLabsFragment" />
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.example.physics_lab.ui.user_list.UserList"
+        android:label="UserListFragment" />
 </navigation>

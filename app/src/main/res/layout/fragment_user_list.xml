@@ -1,0 +1,60 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12">
+
+        <TextView
+            android:id="@+id/userText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Участники класса"
+            android:layout_weight="1"
+            android:textSize="30sp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="11">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewUsers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionsMenu
+                android:id="@+id/menu_buttons_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                fab:fab_addButtonColorNormal="@color/colorMainBlue"
+                fab:fab_expandDirection="up"
+                fab:layout_constraintBottom_toBottomOf="parent"
+                fab:layout_constraintEnd_toEndOf="parent"
+                fab:fab_labelStyle="@style/menu_label_style">
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="@color/colorMainLightBlue"
+                    fab:fab_title="Выйти"/>
+
+            </com.getbase.floatingactionbutton.FloatingActionsMenu>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

@@ -90,6 +90,14 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
         }
         floatMenu.addButton(floatAddLab)
 
+        val floatUsers = FloatingActionButton(context)
+        floatUsers.title = "Пользователи класса"
+        floatUsers.setColorNormalResId(R.color.colorMainLightBlue)
+        floatUsers.setOnClickListener {
+            navController.navigate(R.id.action_labListFragment_to_userListFragment)
+        }
+        floatMenu.addButton(floatUsers)
+
         val floatDeleteClass = FloatingActionButton(context)
         floatDeleteClass.title = "Удалить класс"
         floatDeleteClass.setColorNormalResId(R.color.colorMainLightBlue)

@@ -77,7 +77,7 @@ class RegistrationFullName : BaseFragment<FragmentRegistrationFullNameBinding>()
             if (viewModel.fieldsAreEmpty) {
                 viewModel.apiExceptionData.value = "Fields are empty"
             } else {
-                registrationService.saveFullName(name + " " + surname + " " + patronymic)
+                registrationService.saveFullName(surname + " " + name + " " + patronymic)
                 navController.navigate(R.id.action_registrationFullNameFragment_to_registrationEmailFragment)
                 context?.let { it1 -> hideKeyboard(it1) }
             }

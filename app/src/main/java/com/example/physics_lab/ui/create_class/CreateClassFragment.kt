@@ -37,7 +37,7 @@ class CreateClassFragment : BaseFragment<TeacherAddClassBinding>(), Observer<Cla
         viewBinding.createClassButton.setOnClickListener {
             val className = viewModel.className.value ?: ""
             if (className.isEmpty()) {
-                showToast("Fields are empty")
+                showToast("Поля пустые")
             } else {
                 createClass()
             }
@@ -50,7 +50,7 @@ class CreateClassFragment : BaseFragment<TeacherAddClassBinding>(), Observer<Cla
     }
 
     override fun onChanged(t: ClassRoomItem?) {
-        showToast("Class created")
+        showToast("Класс создан успешно")
         navController.navigate(R.id.classListFragment)
         hideKeyboard(requireContext())
     }
