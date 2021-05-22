@@ -115,5 +115,13 @@
     <fragment
         android:id="@+id/userListFragment"
         android:name="com.example.physics_lab.ui.user_list.UserList"
-        android:label="UserListFragment" />
+        android:label="UserListFragment" >
+        <action
+            android:id="@+id/action_userListFragment_to_addUserTeacherFragment"
+            app:destination="@id/addUserTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addUserTeacherFragment"
+        android:name="com.example.physics_lab.ui.user_list.add_user.AddUserTeacher"
+        android:label="AddUserTeacherFragment" />
 </navigation>

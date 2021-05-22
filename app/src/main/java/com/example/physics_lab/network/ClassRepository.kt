@@ -63,6 +63,10 @@ object ClassRepository : FuelNetworkService() {
         return deleteWithToken("Teacher/class/$classId/user/$deletedUserId", Boolean::class.java, token)
     }
 
+    suspend fun postUserToClass(token: String, classId: String, addedUserEmail: String): Boolean? {
+        return postWithToken("Teacher/class/$classId/user/$addedUserEmail", Boolean::class.java, token)
+    }
+
     suspend fun loadLabTasks(token: String): LabTaskResponse? {
         return getWithToken("Teacher/taskLab", LabTaskResponse::class.java, token)
     }

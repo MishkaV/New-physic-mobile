@@ -8,6 +8,7 @@ import com.example.physics_lab.R
 import com.example.physics_lab.databinding.FragmentUserListBinding
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.UserItem
+import com.getbase.floatingactionbutton.FloatingActionButton
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
@@ -31,6 +32,7 @@ class UserList  : BaseFragment<FragmentUserListBinding>(){
         setUpRecycler()
         observeFields()
         loadClassInfo()
+        setOnClick(view)
     }
 
     private fun setUpRecycler() {
@@ -58,5 +60,11 @@ class UserList  : BaseFragment<FragmentUserListBinding>(){
         })
     }
 
+    private fun setOnClick(view: View) {
+        val addButton = view.findViewById<FloatingActionButton>(R.id.addUserButton)
+        addButton.setOnClickListener {
+            navController.navigate(R.id.action_userListFragment_to_addUserTeacherFragment)
+        }
+    }
 }
 

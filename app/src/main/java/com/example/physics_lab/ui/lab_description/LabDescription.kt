@@ -1,5 +1,7 @@
 package com.example.physics_lab.ui.lab_description
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +12,7 @@ import com.example.physics_lab.data.Lab
 import com.example.physics_lab.databinding.FragmentLabDescriptionBinding
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.LabDescrItem
+import com.google.android.material.button.MaterialButton
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
@@ -32,14 +35,22 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeFields()
+        observeFields(view)
         setUpRecycler()
         loadInfoLabs()
     }
 
-    private fun observeFields() {
+    private fun observeFields(view: View) {
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
-        viewModel.labDescrData.observe(viewLifecycleOwner, labDescrObserver)
+        viewModel.labDescrData.observe(viewLifecycleOwner, {
+            adapter.clear()
+            adapter.add(LabDescrItem("Какая тема?", it.task.theme))
+            adapter.add(LabDescrItem("О чем?", it.task.description))
+            adapter.add(LabDescrItem("Что используем?", it.task.equipment))
+            adapter.notifyDataSetChanged()
+
+            setOnClick(view, it)
+        })
     }
 
     private fun loadInfoLabs() = viewModel.loadClassDescrStudent()
@@ -51,11 +62,17 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
         }
     }
 
-    private val labDescrObserver = Observer<Lab> {
-        adapter.clear()
-        adapter.add(LabDescrItem("Какая тема?", it.task.theme))
-        adapter.add(LabDescrItem("О чем?", it.task.description))
-        adapter.add(LabDescrItem("Что используем?", it.task.equipment))
-        adapter.notifyDataSetChanged()
+
+    private fun  setOnClick(view: View, lab: Lab) {
+        val button = view.findViewById<MaterialButton>(R.id.infoLabButton)
+        if (lab.task.linkToManual != null) {
+            button.setOnClickListener {
+                val browserIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(lab.task.linkToManual)
+                )
+                startActivity(browserIntent)
+            }
+        }
     }
 }

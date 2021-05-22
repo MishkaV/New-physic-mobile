@@ -48,11 +48,11 @@
                 fab:fab_labelStyle="@style/menu_label_style">
 
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/add_user"
+                    android:id="@+id/addUserButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     fab:fab_colorNormal="@color/colorMainLightBlue"
-                    fab:fab_title="Выйти"/>
+                    fab:fab_title="Добавить пользователя"/>
 
             </com.getbase.floatingactionbutton.FloatingActionsMenu>
         </FrameLayout>

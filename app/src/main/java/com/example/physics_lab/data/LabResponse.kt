@@ -20,6 +20,7 @@ data class LabTask(
     val id: Int,
     val description: String?,
     val equipment: String?,
+    val linkToManual: String?,
     val recommendedClass: String?,
     val name: String,
     val theme: String
