@@ -24,6 +24,7 @@ class SolvedWorksViewModel (context: Context) : BaseViewModel() {
     private val classService = ClassService(context)
     val activeSolution = MutableLiveData<ActiveSolutionData>()
     val classData = MutableLiveData<ClassRoomItem>()
+    val removeResponse = MutableLiveData<Unit>()
 
     fun loadActiveSolution() {
         val token = authService.token ?: return
@@ -57,4 +58,20 @@ class SolvedWorksViewModel (context: Context) : BaseViewModel() {
             }
         }
     }
+
+    fun deleteLab() {
+        val token = authService.token ?: return
+        val labId = labService.labId ?: return
+            scopeMain.launch {
+                val response = withContext(Dispatchers.IO) {
+                    LabRepository.deleteLabTeacher(token, labId)
+                }
+                if (response != true) {
+                    apiExceptionData.value = "Что-то пошло не так. Попробуйте ещё раз."
+                } else {
+                    removeResponse.value = Unit
+                }
+            }
+        }
+
 }

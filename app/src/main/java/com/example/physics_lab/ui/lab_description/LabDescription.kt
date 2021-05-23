@@ -44,10 +44,13 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
         viewModel.labDescrData.observe(viewLifecycleOwner, {
             adapter.clear()
+            val name = it.task.name ?: ""
             val theme = it.task.theme ?: ""
             val description = it.task.description ?: ""
             val equipment = it.task.equipment ?: ""
 
+
+            adapter.add(LabDescrItem("Какое название?", name))
             adapter.add(LabDescrItem("Какая тема?", theme))
             adapter.add(LabDescrItem("О чем?", description))
             adapter.add(LabDescrItem("Что используем?", equipment))

@@ -15,4 +15,8 @@ object LabRepository : FuelNetworkService() {
     suspend fun loadRawLabsForTeacher(token: String, classId: String): ClassUserData? {
         return getWithToken( "Teacher/class/${classId}",ClassUserData::class.java, token)
     }
+
+    suspend fun deleteLabTeacher(token: String, labId: String): Boolean? {
+        return deleteWithToken( "Teacher/lab/$labId",Boolean::class.java, token)
+    }
 }

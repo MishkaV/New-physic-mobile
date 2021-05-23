@@ -23,6 +23,7 @@ import com.example.physics_lab.ui._items.LabDescrItem
 import com.example.physics_lab.ui._items.LabListItem
 import com.example.physics_lab.ui.lab_description.LabDescriptionViewModel
 import com.example.physics_lab.ui.lab_description.LabDescriptionViewModelFactory
+import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.material.button.MaterialButton
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -55,7 +56,7 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
         observeFields(view)
         setUpRecycler()
         loadInfoActiveSolution()
-        setOnClick()
+        setOnClick(view)
     }
 
     private fun observeFields(view: View) {
@@ -83,6 +84,9 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
             }
 
         })
+        viewModel.removeResponse.observe(viewLifecycleOwner, {
+            navController.popBackStack()
+        })
     }
 
     private fun loadInfoActiveSolution() = viewModel.loadActiveSolution()
@@ -95,7 +99,7 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
     }
 
 
-    private fun  setOnClick() {
+    private fun  setOnClick(view: View) {
         adapter.setOnItemClickListener { item, view ->
             val solItem = item as ActiveSolutionItem
             solutionService.saveName(solItem.name)
@@ -104,6 +108,11 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
             solutionService.saveResult(solItem.item.solution)
             solutionService.saveVideoPath(solItem.item.videoPath)
             navController.navigate(R.id.action_solvedWorksFragment_to_setMarkFragment)
+        }
+
+        val deleteLab = view.findViewById<FloatingActionButton>(R.id.deleteLabButton)
+        deleteLab.setOnClickListener {
+            viewModel.deleteLab()
         }
     }
 
