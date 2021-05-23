@@ -130,5 +130,13 @@
     <fragment
         android:id="@+id/solvedWorksFragment"
         android:name="com.example.physics_lab.ui.solved_works.SolvedWorks"
-        android:label="SolvedWorksFragment" />
+        android:label="SolvedWorksFragment" >
+        <action
+            android:id="@+id/action_solvedWorksFragment_to_setMarkFragment"
+            app:destination="@id/setMarkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setMarkFragment"
+        android:name="com.example.physics_lab.ui.solved_works.set_marks.SetMark"
+        android:label="SetMarkFragment" />
 </navigation>

@@ -1,0 +1,164 @@
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.physics_lab.ui.solved_works.set_marks.SetMarkViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/setMarkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center_vertical"
+            android:text="Выставить оценку"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:id="@+id/getDataLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setMarkText"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:text="Ученик:"
+                android:textSize="30sp" />
+            <TextView
+                android:id="@+id/valueNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:textIsSelectable="true"
+                android:text="Иванов Иван Иванович"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/titleGetValueText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:text="Полученное значение:"
+                android:textSize="30sp" />
+            <TextView
+                android:id="@+id/valueResultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:textIsSelectable="true"
+                android:text="9.8 м/с"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/titleDateFinishText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:text="Дата выполенеия:"
+                android:textSize="30sp" />
+            <TextView
+                android:id="@+id/dateFinishText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/rubik_regular"
+                android:gravity="center_vertical"
+                android:textIsSelectable="true"
+                android:text="31.12.2021"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/setMarkEditLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/getDataLayout"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Оценка"
+            app:boxStrokeColor="@color/colorMainBlue"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/colorMainBlue">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/setMarkEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.mark}"
+                tools:ignore="OnClick" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/videoButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/setMarkEditLayout"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorMainWhite"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Просмотреть запись"
+            android:textColor="@color/colorMainBlue"
+            app:cornerRadius="15dp"
+            app:strokeColor="@color/colorMainBlue"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/setMarkButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/videoButton"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorMainBlue"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Оценить"
+            android:textColor="@color/colorMainWhite"
+            app:cornerRadius="15dp"
+            app:strokeColor="@color/colorMainBlue"
+            app:strokeWidth="2dp" />
+    </RelativeLayout>
+</layout>

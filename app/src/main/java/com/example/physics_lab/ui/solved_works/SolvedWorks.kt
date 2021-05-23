@@ -1,5 +1,6 @@
 package com.example.physics_lab.ui.solved_works
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,16 +15,21 @@ import com.example.physics_lab.data.ActiveSolutionData
 import com.example.physics_lab.data.Lab
 import com.example.physics_lab.databinding.FragmentLabDescriptionBinding
 import com.example.physics_lab.databinding.FragmentSolvedWorksBinding
+import com.example.physics_lab.service.ClassService
+import com.example.physics_lab.service.SolutionService
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.ActiveSolutionItem
 import com.example.physics_lab.ui._items.LabDescrItem
+import com.example.physics_lab.ui._items.LabListItem
 import com.example.physics_lab.ui.lab_description.LabDescriptionViewModel
 import com.example.physics_lab.ui.lab_description.LabDescriptionViewModelFactory
 import com.google.android.material.button.MaterialButton
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import java.text.SimpleDateFormat
 
 class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
+    lateinit var solutionService: SolutionService
     private val adapter by lazy {
         GroupAdapter<GroupieViewHolder>()
     }
@@ -32,6 +38,11 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
 
     override fun getLayoutRes(): Int {
         return R.layout.fragment_solved_works
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        solutionService = SolutionService(context)
     }
 
     override fun provideViewModel() {
@@ -44,6 +55,7 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
         observeFields(view)
         setUpRecycler()
         loadInfoActiveSolution()
+        setOnClick()
     }
 
     private fun observeFields(view: View) {
@@ -83,7 +95,26 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
     }
 
 
-    private fun  setOnClick(view: View, lab: Lab) {
+    private fun  setOnClick() {
+        adapter.setOnItemClickListener { item, view ->
+            val solItem = item as ActiveSolutionItem
+            solutionService.saveName(solItem.name)
+            solutionService.saveCheckedUserId(solItem.item.userId.toString())
+            solutionService.saveDateOfDownload(getDate(solItem.item.dateOfDownload))
+            solutionService.saveResult(solItem.item.solution)
+            solutionService.saveVideoPath(solItem.item.videoPath)
+            navController.navigate(R.id.action_solvedWorksFragment_to_setMarkFragment)
+        }
+    }
 
+    fun getDate(dateStr: String) : String{
+        try {
+            val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            val formatter = SimpleDateFormat("dd MMMM yyyy")
+            val formattedDate = formatter.format(parser.parse(dateStr))
+            return formattedDate.toString()
+        } catch (e: Exception){
+            return ""
+        }
     }
 }

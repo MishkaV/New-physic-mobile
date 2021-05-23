@@ -93,4 +93,19 @@ object ClassRepository : FuelNetworkService() {
     suspend fun loadActiveSolution(token: String, labId: String): ActiveSolutionData? {
         return getWithToken("Teacher/lab/$labId/user", ActiveSolutionData::class.java, token)
     }
+
+    suspend fun putMarkStudent(
+        token : String,
+        labId : String,
+        grade : Int,
+        checkedUserId : String,
+        status : Int = 1
+    ): SolutionItemData? {
+        return putWithParamsAndToken(
+            "Teacher/lab/$labId/user/$checkedUserId",
+            SolutionItemData::class.java,
+            SetMarkData(grade, status),
+            token
+        )
+    }
 }

@@ -147,6 +147,30 @@ abstract class FuelNetworkService {
         return null
     }
 
+    protected suspend fun <T> putWithParamsAndToken(
+        path: String,
+        clazz: Class<T>,
+        parameters: Any,
+        token: String
+    ): T? {
+        try {
+            return Fuel.put(path)
+                .header(Headers.AUTHORIZATION, "Bearer ${token.removeQuotes()}")
+                .jsonBody(JSONObject(gson.toJson(parameters)).toString(), Charsets.UTF_8)
+                .awaitStringResult()
+                .fold({ jsonResponse ->
+                    Timber.i("response $jsonResponse")
+                    return@fold gson.fromJson(jsonResponse, clazz)
+                }) { error ->
+                    Timber.i("error $error")
+                    return@fold gson.fromJson(error.errorData.toString(Charsets.UTF_8), clazz)
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
     protected suspend fun <T> getWithParamsAndToken(
         path: String,
         clazz: Class<T>,
