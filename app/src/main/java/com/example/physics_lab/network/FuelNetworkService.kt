@@ -88,7 +88,7 @@ abstract class FuelNetworkService {
     ): T? {
         try {
             return Fuel.post(path)
-                .header(Headers.AUTHORIZATION, "Bearer $token")
+                .header(Headers.AUTHORIZATION, "Bearer ${token.removeQuotes()}")
                 .awaitStringResult()
                 .fold({ jsonResponse ->
                     return@fold gson.fromJson(jsonResponse, clazz)

@@ -109,7 +109,7 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
 
     private fun initStudentButtons(floatMenu: FloatingActionsMenu) {
         val floatActiveLab = FloatingActionButton(context)
-        floatActiveLab.title = "Активные работы"
+        floatActiveLab.title = "Активные решения"
         floatActiveLab.setColorNormalResId(R.color.colorMainLightBlue)
         floatActiveLab.setOnClickListener {
             navController.navigate(R.id.action_labListFragment_to_activeLabsFragment)
@@ -195,6 +195,13 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
                 val labItem = item as LabListItem
                 labService.saveLabId(labItem.item.id.toString())
                 navController.navigate(R.id.action_labListFragment_to_labDescriptionFragment)
+            }
+        }
+        else {
+            adapter.setOnItemClickListener { item, view ->
+                val labItem = item as LabListItem
+                labService.saveLabId(labItem.item.id.toString())
+                navController.navigate(R.id.action_labListFragment_to_solvedWorksFragment)
             }
         }
     }

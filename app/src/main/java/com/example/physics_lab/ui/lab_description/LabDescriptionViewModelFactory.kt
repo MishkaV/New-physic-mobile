@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.physics_lab.ui.lab_list.LabListViewModel
 
+@Suppress("UNCHECKED_CAST")
 class LabDescriptionViewModelFactory (private val context: Context): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return LabDescriptionViewModel(context) as T

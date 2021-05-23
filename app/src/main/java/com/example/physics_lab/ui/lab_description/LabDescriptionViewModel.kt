@@ -23,7 +23,6 @@ class LabDescriptionViewModel (context: Context) : BaseViewModel() {
     fun loadClassDescrStudent() {
         val token = authService.token ?: return
         val labId = labService.labId ?: return
-        Log.d("TAG", labId)
             scopeMain.launch {
                 val response = withContext(Dispatchers.IO) {
                     ClassRepository.loadLabDescr(token, labId)
