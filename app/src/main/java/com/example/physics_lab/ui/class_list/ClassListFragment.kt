@@ -13,6 +13,7 @@ import com.example.physics_lab.data.ClassRoomItem
 import com.example.physics_lab.databinding.FragmentStudClassScreenBinding
 import com.example.physics_lab.service.AuthService
 import com.example.physics_lab.service.ClassService
+import com.example.physics_lab.service.StatisticService
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.ClassListItem
 import com.getbase.floatingactionbutton.FloatingActionButton
@@ -27,6 +28,7 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
     }
     lateinit var authService: AuthService
     lateinit var classService: ClassService
+    lateinit var statisticService: StatisticService
     lateinit var viewModel: ClassListViewModel
     override fun getLayoutRes(): Int {
         return R.layout.fragment_stud_class_screen
@@ -36,6 +38,7 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
         super.onAttach(context)
         authService = AuthService(context)
         classService = ClassService(context)
+        statisticService = StatisticService(context)
     }
 
     override fun onResume() {
@@ -65,7 +68,8 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
         if (authService.role == "teacher") {
             val floatAddClass = FloatingActionButton(context)
             floatAddClass.title = "Добавить класс"
-            floatAddClass.setColorNormalResId(R.color.colorMainLightBlue)
+            floatAddClass.setColorNormalResId(R.color.colorMainWhite)
+            floatAddClass.setIcon(R.drawable.ic_presentation)
             floatAddClass.setOnClickListener {
                 navController.navigate(R.id.action_classListFragment_to_addClassFragment)
             }
@@ -74,7 +78,8 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
         else {
             val floatJoinClass = FloatingActionButton(context)
             floatJoinClass.title = "Присоединиться к классу"
-            floatJoinClass.setColorNormalResId(R.color.colorMainLightBlue)
+            floatJoinClass.setColorNormalResId(R.color.colorMainWhite)
+            floatJoinClass.setIcon(R.drawable.ic_join)
             floatJoinClass.setOnClickListener {
                 navController.navigate(R.id.action_classListFragment_to_joinClassFragment)
             }
@@ -148,5 +153,9 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
             navController.navigate(R.id.action_classListFragment_to_welcomeFragment)
         }
 
+        viewBinding.statAboutClassesButton.setOnClickListener {
+            statisticService.savePrevLayout("classes")
+            navController.navigate(R.id.action_classListFragment_to_statisticScreenFragment)
+        }
     }
 }

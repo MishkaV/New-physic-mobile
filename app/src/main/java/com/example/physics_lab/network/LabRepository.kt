@@ -12,6 +12,12 @@ object LabRepository : FuelNetworkService() {
         return SingleClassResponse(getWithToken( "Student/class/${classId}", ClassRoomItem::class.java, token))
     }
 
+    suspend fun loadMoreLabsForTeacher(token: String, classId: String): ClassUserData? {
+        return getWithToken( "Teacher/class/${classId}",ClassUserData::class.java, token)
+    }
+    suspend fun loadMoreLabsForStudent(token: String, classId: String): ClassUserData? {
+        return getWithToken( "Student/class/${classId}", ClassUserData::class.java, token)
+    }
     suspend fun loadRawLabsForTeacher(token: String, classId: String): ClassUserData? {
         return getWithToken( "Teacher/class/${classId}",ClassUserData::class.java, token)
     }

@@ -51,7 +51,8 @@
                     android:id="@+id/addUserButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    fab:fab_colorNormal="@color/colorMainLightBlue"
+                    fab:fab_colorNormal="@color/colorMainWhite"
+                    fab:fab_icon="@drawable/ic_add_user"
                     fab:fab_title="Добавить пользователя"/>
 
             </com.getbase.floatingactionbutton.FloatingActionsMenu>

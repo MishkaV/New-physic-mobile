@@ -14,6 +14,7 @@ import com.example.physics_lab.databinding.FragmentLabListBinding
 import com.example.physics_lab.service.AuthService
 import com.example.physics_lab.service.ClassService
 import com.example.physics_lab.service.LabService
+import com.example.physics_lab.service.StatisticService
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.LabListItem
 import com.getbase.floatingactionbutton.FloatingActionButton
@@ -29,6 +30,7 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
     lateinit var authService: AuthService
     lateinit var classService: ClassService
     lateinit var labService: LabService
+    lateinit var statisticService: StatisticService
     lateinit var viewModel: LabListViewModel
     override fun getLayoutRes(): Int {
         return R.layout.fragment_lab_list
@@ -52,6 +54,7 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
         authService = AuthService(context)
         classService = ClassService(context)
         labService = LabService(context)
+        statisticService = StatisticService(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -84,7 +87,8 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
     private fun initTeacherButtons(floatMenu: FloatingActionsMenu) {
         val floatAddLab = FloatingActionButton(context)
         floatAddLab.title = "Добавить задание"
-        floatAddLab.setColorNormalResId(R.color.colorMainLightBlue)
+        floatAddLab.setColorNormalResId(R.color.colorMainWhite)
+        floatAddLab.setIcon(R.drawable.ic_add_task)
         floatAddLab.setOnClickListener {
             navController.navigate(R.id.action_labListFragment_to_addLabFragment)
         }
@@ -92,7 +96,8 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
 
         val floatUsers = FloatingActionButton(context)
         floatUsers.title = "Пользователи класса"
-        floatUsers.setColorNormalResId(R.color.colorMainLightBlue)
+        floatUsers.setColorNormalResId(R.color.colorMainWhite)
+        floatUsers.setIcon(R.drawable.ic_user)
         floatUsers.setOnClickListener {
             navController.navigate(R.id.action_labListFragment_to_userListFragment)
         }
@@ -100,7 +105,8 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
 
         val floatDeleteClass = FloatingActionButton(context)
         floatDeleteClass.title = "Удалить класс"
-        floatDeleteClass.setColorNormalResId(R.color.colorMainLightBlue)
+        floatDeleteClass.setIcon(R.drawable.ic_delete_blue)
+        floatDeleteClass.setColorNormalResId(R.color.colorMainWhite)
         floatDeleteClass.setOnClickListener {
             viewModel.removeClass()
         }
@@ -110,7 +116,8 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
     private fun initStudentButtons(floatMenu: FloatingActionsMenu) {
         val floatActiveLab = FloatingActionButton(context)
         floatActiveLab.title = "Активные решения"
-        floatActiveLab.setColorNormalResId(R.color.colorMainLightBlue)
+        floatActiveLab.setColorNormalResId(R.color.colorMainWhite)
+        floatActiveLab.setIcon(R.drawable.ic_active)
         floatActiveLab.setOnClickListener {
             navController.navigate(R.id.action_labListFragment_to_activeLabsFragment)
         }
@@ -118,7 +125,8 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
 
         val floatFinishLab = FloatingActionButton(context)
         floatFinishLab.title = "Завершенные работы"
-        floatFinishLab.setColorNormalResId(R.color.colorMainLightBlue)
+        floatFinishLab.setColorNormalResId(R.color.colorMainWhite)
+        floatFinishLab.setIcon(R.drawable.ic_finish)
         floatFinishLab.setOnClickListener {
             navController.navigate(R.id.action_labListFragment_to_finishLabFragment)
         }
@@ -128,7 +136,8 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
     private fun initGeneralButtons(floatMenu: FloatingActionsMenu) {
         val floatInfoClass = FloatingActionButton(context)
         floatInfoClass.title = "Информация о классе"
-        floatInfoClass.setColorNormalResId(R.color.colorMainLightBlue)
+        floatInfoClass.setColorNormalResId(R.color.colorMainWhite)
+        floatInfoClass.setIcon(R.drawable.ic_information)
         floatInfoClass.setOnClickListener {
             navController.navigate(R.id.action_labListFragment_to_classDescriptionFragment)
         }
@@ -203,6 +212,10 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
                 labService.saveLabId(labItem.item.id.toString())
                 navController.navigate(R.id.action_labListFragment_to_solvedWorksFragment)
             }
+        }
+        viewBinding.statAboutClassButton.setOnClickListener {
+            statisticService.savePrevLayout("labs")
+            navController.navigate(R.id.action_labListFragment_to_statisticScreenFragment)
         }
     }
 }

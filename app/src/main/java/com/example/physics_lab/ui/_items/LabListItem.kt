@@ -1,5 +1,7 @@
 package com.example.physics_lab.ui._items
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.View
 import com.example.physics_lab.R
@@ -8,6 +10,7 @@ import com.example.physics_lab.databinding.ListItemResClassBinding
 import com.example.physics_lab.databinding.ListItemResLabsBinding
 import com.xwray.groupie.viewbinding.BindableItem
 import java.text.SimpleDateFormat
+import kotlin.random.Random
 
 class LabListItem(val item: Lab): BindableItem<ListItemResLabsBinding>() {
 
@@ -17,6 +20,7 @@ class LabListItem(val item: Lab): BindableItem<ListItemResLabsBinding>() {
             viewBinding.labDeadline =  ""
         else
             viewBinding.labDeadline = "Дедлайн: " + getDate(item.deadline)
+
     }
 
     override fun getLayout(): Int = R.layout.list_item_res_labs
@@ -38,4 +42,5 @@ class LabListItem(val item: Lab): BindableItem<ListItemResLabsBinding>() {
             return ""
         }
     }
+
 }

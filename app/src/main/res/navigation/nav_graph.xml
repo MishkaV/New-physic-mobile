@@ -32,6 +32,9 @@
             android:id="@+id/action_classListFragment_to_addClassFragment"
             app:destination="@id/addClassFragment" />
         <action android:id="@+id/action_classListFragment_to_welcomeFragment" app:destination="@id/welcomeFragment"/>
+        <action
+            android:id="@+id/action_classListFragment_to_statisticScreenFragment"
+            app:destination="@id/statisticScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinClassFragment"
@@ -60,6 +63,9 @@
         <action
             android:id="@+id/action_labListFragment_to_solvedWorksFragment"
             app:destination="@id/solvedWorksFragment" />
+        <action
+            android:id="@+id/action_labListFragment_to_statisticScreenFragment"
+            app:destination="@id/statisticScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFullNameFragment"
@@ -139,4 +145,8 @@
         android:id="@+id/setMarkFragment"
         android:name="com.example.physics_lab.ui.solved_works.set_marks.SetMark"
         android:label="SetMarkFragment" />
+    <fragment
+        android:id="@+id/statisticScreenFragment"
+        android:name="com.example.physics_lab.ui.statistic_screen.StatisticScreen"
+        android:label="StatisticScreenFragment" />
 </navigation>

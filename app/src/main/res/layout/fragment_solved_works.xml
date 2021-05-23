@@ -98,18 +98,19 @@
                 fab:fab_labelStyle="@style/menu_label_style">
 
 
-                <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/labDescriptionButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    fab:fab_colorNormal="@color/colorMainLightBlue"
-                    fab:fab_title="Описание задания"/>
+<!--                <com.getbase.floatingactionbutton.FloatingActionButton-->
+<!--                    android:id="@+id/labDescriptionButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    fab:fab_colorNormal="@color/colorMainLightBlue"-->
+<!--                    fab:fab_title="Описание задания"/>-->
 
                 <com.getbase.floatingactionbutton.FloatingActionButton
                     android:id="@+id/deleteLabButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    fab:fab_colorNormal="@color/colorMainLightBlue"
+                    fab:fab_colorNormal="@color/colorMainWhite"
+                    fab:fab_icon="@drawable/ic_add_task"
                     fab:fab_title="Удалить задание"/>
 
             </com.getbase.floatingactionbutton.FloatingActionsMenu>

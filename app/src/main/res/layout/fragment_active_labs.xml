@@ -34,7 +34,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:orientation="vertical"
                 android:weightSum="10"
                 >
@@ -71,7 +71,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:fontFamily="@font/rubik_regular"
                     android:gravity="top|center_horizontal"
-                    android:text="Стоит попробовать попробовать прорешать новые задания, ведь это так увлекательно!"
+                    android:text="Стоит попробовать прорешать новые задания, ведь это так увлекательно!"
                     android:textColor="@color/colorMainBlue"
                     android:textSize="22dp" />
 

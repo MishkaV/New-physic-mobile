@@ -54,6 +54,7 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
             adapter.add(LabDescrItem("Какая тема?", theme))
             adapter.add(LabDescrItem("О чем?", description))
             adapter.add(LabDescrItem("Что используем?", equipment))
+
             adapter.notifyDataSetChanged()
 
             setOnClick(view, it)

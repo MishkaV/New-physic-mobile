@@ -96,7 +96,12 @@
                 fab:layout_constraintEnd_toEndOf="parent"
                 fab:fab_labelStyle="@style/menu_label_style">
 
-
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/statAboutClassButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    fab:fab_colorNormal="@color/colorMainLightBlue"
+                    fab:fab_title="Статистика о классе"/>
             </com.getbase.floatingactionbutton.FloatingActionsMenu>
         </FrameLayout>
     </LinearLayout>
