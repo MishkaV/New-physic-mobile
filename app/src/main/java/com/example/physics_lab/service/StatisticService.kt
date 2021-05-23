@@ -12,6 +12,7 @@ class StatisticService(context: Context) {
     )
 
     var prevLayout: String? = null
+
         private set
 
     init {

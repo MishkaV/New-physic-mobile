@@ -61,10 +61,10 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
 
     private fun observeFields(view: View) {
         var solutions: ArrayList<ActiveSolutionData.Solution>? = null
+        val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptySolvedWorksLayout)
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
         viewModel.activeSolution.observe(viewLifecycleOwner, { rawData ->
             adapter.clear()
-            val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptySolvedWorksLayout)
             if (rawData.solutions.size != 0) {
                 emptyLabLayout.visibility = View.INVISIBLE
                 solutions = null
@@ -78,9 +78,19 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
         })
         viewModel.classData.observe(viewLifecycleOwner, { classRoomItem ->
             solutions?.map { sol ->
-                var name = classRoomItem.userClasses.find { it.id == sol.userId }?.name
-                name = name ?: ""
-                adapter.add(ActiveSolutionItem(sol, name))
+                if (classRoomItem.userClasses != null) {
+                    var name = classRoomItem.userClasses.find { it.id == sol.userId }?.name
+                    name = name ?: ""
+                    adapter.add(ActiveSolutionItem(sol, name))
+
+                    if(adapter.itemCount == 0)
+                        emptyLabLayout.visibility = View.VISIBLE
+                    else
+                        emptyLabLayout.visibility = View.INVISIBLE
+                }
+                else {
+                    emptyLabLayout.visibility = View.VISIBLE
+                }
             }
 
         })

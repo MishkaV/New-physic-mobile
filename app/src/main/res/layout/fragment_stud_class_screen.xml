@@ -110,7 +110,8 @@
                     android:id="@+id/statAboutClassesButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    fab:fab_colorNormal="@color/colorMainLightBlue"
+                    fab:fab_colorNormal="@color/colorMainWhite"
+                    fab:fab_icon="@drawable/ic_statistic"
                     fab:fab_title="Статистика о классах"/>
 
             </com.getbase.floatingactionbutton.FloatingActionsMenu>
