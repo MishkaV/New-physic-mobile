@@ -14,6 +14,7 @@ class ActiveSolutionItem (val item: ActiveSolutionData.Solution, val name : Stri
 
     override fun bind(viewBinding: ListItemActiveSolutionBinding, position: Int) {
         viewBinding.userName = name
+        viewBinding.profileImage.setImageResource(getIcon(position))
         if (item.dateOfDownload == null)
             viewBinding.dateDownload = ""
         else
@@ -37,5 +38,27 @@ class ActiveSolutionItem (val item: ActiveSolutionData.Solution, val name : Stri
         } catch (e: Exception){
             return ""
         }
+    }
+
+    private fun getIcon(position: Int): Int {
+        if (position % 10 == 0)
+            return R.drawable.avatar1
+        if (position % 10 == 1)
+            return R.drawable.avatar2
+        if (position % 10 == 2)
+            return R.drawable.avatar3
+        if (position % 10 == 3)
+            return R.drawable.avatar4
+        if (position % 10 == 4)
+            return R.drawable.avatar5
+        if (position % 10 == 5)
+            return R.drawable.avatar6
+        if (position % 10 == 6)
+            return R.drawable.avatar7
+        if (position % 10 == 7)
+            return R.drawable.avatar8
+        if (position % 10 == 8)
+            return R.drawable.avatar8
+        return R.drawable.avatar10
     }
 }
