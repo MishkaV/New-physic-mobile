@@ -49,12 +49,24 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
             val description = it.task.description ?: ""
             val equipment = it.task.equipment ?: ""
 
-
             adapter.add(LabDescrItem("Какое название?", name))
             adapter.add(LabDescrItem("Какая тема?", theme))
             adapter.add(LabDescrItem("О чем?", description))
             adapter.add(LabDescrItem("Что используем?", equipment))
-
+            if (it.solutionLabs != null) {
+                var str = ""
+                it.solutionLabs.map { sol ->
+                    if (sol.status != null && sol.status == 0)
+                        str += "Статус: Активное решение\n"
+                    if (sol.status != null && sol.status == 1) {
+                        str += "Статус: Проверенное решение\n"
+                        if (sol.grade != null)
+                            str += "Оценка: ${sol.grade}\n"
+                    }
+                }
+                if (str != "")
+                    adapter.add(LabDescrItem("Какое состояние работы?", str))
+            }
             adapter.notifyDataSetChanged()
 
             setOnClick(view, it)
