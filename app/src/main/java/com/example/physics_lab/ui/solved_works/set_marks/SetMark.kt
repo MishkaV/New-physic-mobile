@@ -71,12 +71,17 @@ class SetMark : BaseFragment<FragmentSetMarkBinding>() {
         }
         viewBinding.videoButton.setOnClickListener {
             val url = solutionService.videoPath
-            if (url != null) {
-                val browserIntent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(url)
-                )
-                startActivity(browserIntent)
+            if (solutionService.videoPath != "") {
+                if (url != null) {
+                    val browserIntent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(url)
+                    )
+                    startActivity(browserIntent)
+                }
+            }
+            else {
+                apiExceptionObserver.onChanged("Запись не прикреплена")
             }
         }
     }

@@ -32,8 +32,8 @@ object ClassRepository : FuelNetworkService() {
         )
     }
 
-    suspend fun loadLabDescr(token: String, labId: String): Lab? {
-        return getWithToken("Student/lab/${labId}", Lab::class.java, token)
+    suspend fun loadLabDescr(token: String, labId: String): LabDescrData2? {
+        return getWithToken("Student/lab/${labId}", LabDescrData2::class.java, token)
     }
 
     suspend fun loadActiveFinishLab(token: String): ActiveFinishData? {

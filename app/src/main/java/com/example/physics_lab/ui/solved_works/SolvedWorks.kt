@@ -120,12 +120,12 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
             if (solItem.item.dateOfDownload != null)
                 solutionService.saveDateOfDownload(getDate(solItem.item.dateOfDownload))
             else
-                solutionService.saveDateOfDownload("")
+                solutionService.saveDateOfDownload("Отсутствует")
 
             if (solItem.item.solution!= null)
                 solutionService.saveResult(solItem.item.solution)
             else
-                solutionService.saveResult("")
+                solutionService.saveResult("Отсутствует")
 
             if (solItem.item.videoPath != null)
                 solutionService.saveVideoPath(solItem.item.videoPath)

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.physics_lab.R
 import com.example.physics_lab.data.Lab
+import com.example.physics_lab.data.LabDescrData2
 import com.example.physics_lab.databinding.FragmentLabDescriptionBinding
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.LabDescrItem
@@ -54,16 +55,16 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
             adapter.add(LabDescrItem("Какая тема?", theme))
             adapter.add(LabDescrItem("О чем?", description))
             adapter.add(LabDescrItem("Что используем?", equipment))
-            if (it.solutionLabs != null) {
+
+            if (it.solution != null) {
                 var str = ""
-                it.solutionLabs.map { sol ->
-                    if (sol.status != null && sol.status == 0)
-                        str += "Статус: Активное решение\n"
-                    if (sol.status != null && sol.status == 1) {
-                        str += "Статус: Проверенное решение\n"
-                        if (sol.grade != null)
-                            str += "Оценка: ${sol.grade}\n"
-                    }
+
+                if (it.solution.status != null && it.solution.status == 0)
+                    str += "Статус:\nАктивное решение\n\n"
+                if (it.solution.status != null && it.solution.status == 1) {
+                    str += "Статус:\nПроверенное решение\n\n"
+                    if (it.solution.grade!= null)
+                            str += "Оценка:\n${it.solution.grade}\n"
                 }
                 if (str != "")
                     adapter.add(LabDescrItem("Какое состояние работы?", str))
@@ -84,7 +85,7 @@ class LabDescription : BaseFragment<FragmentLabDescriptionBinding>(){
     }
 
 
-    private fun  setOnClick(view: View, lab: Lab) {
+    private fun  setOnClick(view: View, lab: LabDescrData2) {
         val button = view.findViewById<MaterialButton>(R.id.infoLabButton)
         if (lab.task.linkToManual != null) {
             button.setOnClickListener {

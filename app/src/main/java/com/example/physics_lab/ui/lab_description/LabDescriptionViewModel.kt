@@ -18,7 +18,7 @@ import timber.log.Timber
 class LabDescriptionViewModel (context: Context) : BaseViewModel() {
     private val authService = AuthService(context)
     private val labService = LabService(context)
-    val labDescrData = MutableLiveData<Lab>()
+    val labDescrData = MutableLiveData<LabDescrData2>()
     val lostConnect = MutableLiveData<Boolean>()
 
     fun loadClassDescrStudent() {

@@ -52,6 +52,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/rubik_regular"
+                android:layout_marginEnd="10dp"
                 android:gravity="center_vertical"
                 android:textIsSelectable="true"
                 android:text="Иванов Иван Иванович"
@@ -75,6 +76,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/rubik_regular"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="15dp"
                 android:textIsSelectable="true"
                 android:text="9.8 м/с"
                 android:textSize="25sp" />
@@ -97,6 +99,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/rubik_regular"
                 android:gravity="center_vertical"
+
+                android:layout_marginHorizontal="15dp"
                 android:textIsSelectable="true"
                 android:text="31.12.2021"
                 android:textSize="25sp" />
