@@ -1,28 +1,21 @@
 package com.example.physics_lab.ui.lab_list.active_lab
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.physics_lab.R
-import com.example.physics_lab.data.ActiveFinishData
 import com.example.physics_lab.databinding.FragmentActiveLabsBinding
-import com.example.physics_lab.databinding.FragmentFinishLabBinding
+import com.example.physics_lab.service.LabService
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.LabListItem
-import com.example.physics_lab.ui.lab_list.finish_lab.FinishLabViewModel
-import com.example.physics_lab.ui.lab_list.finish_lab.FinishLabViewModelFactory
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
 
 class ActiveLabs  : BaseFragment<FragmentActiveLabsBinding>() {
+    lateinit var labService: LabService
     private val adapter by lazy {
         GroupAdapter<GroupieViewHolder>()
     }
@@ -37,11 +30,16 @@ class ActiveLabs  : BaseFragment<FragmentActiveLabsBinding>() {
             ActiveLabsViewModelFactory(requireContext()).create(ActiveLabsViewModel::class.java)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        labService = LabService(context)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
         observeFields(view)
         loadActiveFinishData()
+        setOnClick()
     }
 
     private fun observeFields(view: View) {
@@ -49,7 +47,7 @@ class ActiveLabs  : BaseFragment<FragmentActiveLabsBinding>() {
         viewModel.activeFinishData.observe(viewLifecycleOwner, { rawData ->
             adapter.clear()
             rawData.activeSolutions.map {
-                adapter.add(LabListItem(it.lab))
+                adapter.add(LabListItem(it.lab, "active_labs"))
             }
             adapter.notifyDataSetChanged()
             val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyActiveLabLayout)
@@ -71,5 +69,12 @@ class ActiveLabs  : BaseFragment<FragmentActiveLabsBinding>() {
 
     private fun  loadActiveFinishData() = viewModel.loadActiveFinishLab()
 
+    private fun setOnClick() {
+        adapter.setOnItemClickListener { item, view ->
+            val labItem = item as LabListItem
+            labService.saveLabId(labItem.item.id.toString())
+            navController.navigate(R.id.action_activeLabsFragment_to_labDescriptionFragment)
+        }
+    }
 }
 

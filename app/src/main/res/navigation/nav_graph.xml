@@ -116,11 +116,19 @@
     <fragment
         android:id="@+id/finishLabFragment"
         android:name="com.example.physics_lab.ui.lab_list.finish_lab.FinishLab"
-        android:label="FinishLabFragment" />
+        android:label="FinishLabFragment" >
+        <action
+            android:id="@+id/action_finishLabFragment_to_labDescriptionFragment"
+            app:destination="@id/labDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/activeLabsFragment"
         android:name="com.example.physics_lab.ui.lab_list.active_lab.ActiveLabs"
-        android:label="ActiveLabsFragment" />
+        android:label="ActiveLabsFragment" >
+        <action
+            android:id="@+id/action_activeLabsFragment_to_labDescriptionFragment"
+            app:destination="@id/labDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userListFragment"
         android:name="com.example.physics_lab.ui.user_list.UserList"

@@ -7,7 +7,7 @@ data class ActiveFinishData(
     data class ActiveSolution(
         val userId: Int,
         val solution: String,
-        val lab: Lab,
+        val lab: ClassUserData.Lab,
         val grade: Int,
         val videoPath: String,
         val timeSpan: String,
@@ -18,7 +18,7 @@ data class ActiveFinishData(
     data class FinishedSolution(
         val userId: Int,
         val solution: String,
-        val lab: Lab,
+        val lab: ClassUserData.Lab,
         val grade: Int,
         val videoPath: String,
         val timeSpan: String,

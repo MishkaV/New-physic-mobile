@@ -83,7 +83,7 @@ class StatisticScreenBar : BaseFragment<FragmentStatisticScreenBarBinding>() {
             "labs" -> {
                 adapter.clear()
                 listData = putData(listData, generateByCountLabs(statisticService.countLabs), "Задания")
-                listData = putData(listData, generateByUsers(statisticService.countLabs), "Пользователи")
+                listData = putData(listData, generateByUsers(statisticService.countUsersInClass), "Пользователи")
                 listData.map {
                     adapter.add(StatisticBarChartItem(it.key, it.value, listDataByGroup))
                 }

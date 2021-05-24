@@ -2,15 +2,12 @@ package com.example.physics_lab.ui.lab_list
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.physics_lab.R
-import com.example.physics_lab.data.ClassRoomItem
 import com.example.physics_lab.databinding.FragmentLabListBinding
 import com.example.physics_lab.service.AuthService
 import com.example.physics_lab.service.ClassService
@@ -161,15 +158,14 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
     private fun observeFields(view: View) {
         viewModel.classData.observe(viewLifecycleOwner, { classRooms ->
             adapter.clear()
-            classRooms.labs?.let {
-                adapter.addAll(it.map { lab ->
-                    LabListItem(lab)
-                })
+            classRooms.labs.map { lab->
+                adapter.add(LabListItem(lab, "lab_list"))
             }
+
             if (classRooms.labs != null)
                 statisticService.saveCountLabs(classRooms.labs.size.toFloat())
-            if (classRooms.userClasses != null)
-                statisticService.saveCountUsersInClass(classRooms.userClasses.size.toFloat())
+            if (classRooms.users != null)
+                statisticService.saveCountUsersInClass(classRooms.users.size.toFloat())
 
             adapter.notifyDataSetChanged()
             val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyLabLayout)
