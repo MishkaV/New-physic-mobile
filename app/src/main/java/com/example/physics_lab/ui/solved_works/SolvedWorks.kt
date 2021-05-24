@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -78,8 +79,9 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
         })
         viewModel.classData.observe(viewLifecycleOwner, { classRoomItem ->
             solutions?.map { sol ->
-                if (classRoomItem.userClasses != null) {
-                    var name = classRoomItem.userClasses.find { it.id == sol.userId }?.name
+
+                if (classRoomItem.users != null) {
+                    var name = classRoomItem.users.find { it.id == sol.userId }?.name
                     name = name ?: ""
                     adapter.add(ActiveSolutionItem(sol, name))
 
@@ -114,9 +116,22 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
             val solItem = item as ActiveSolutionItem
             solutionService.saveName(solItem.name)
             solutionService.saveCheckedUserId(solItem.item.userId.toString())
-            solutionService.saveDateOfDownload(getDate(solItem.item.dateOfDownload))
-            solutionService.saveResult(solItem.item.solution)
-            solutionService.saveVideoPath(solItem.item.videoPath)
+//            Log.d("TAG", solItem.name.toString())
+            if (solItem.item.dateOfDownload != null)
+                solutionService.saveDateOfDownload(getDate(solItem.item.dateOfDownload))
+            else
+                solutionService.saveDateOfDownload("")
+
+            if (solItem.item.solution!= null)
+                solutionService.saveResult(solItem.item.solution)
+            else
+                solutionService.saveResult("")
+
+            if (solItem.item.videoPath != null)
+                solutionService.saveVideoPath(solItem.item.videoPath)
+            else
+                solutionService.saveVideoPath("")
+
             navController.navigate(R.id.action_solvedWorksFragment_to_setMarkFragment)
         }
 
@@ -126,7 +141,7 @@ class SolvedWorks : BaseFragment<FragmentSolvedWorksBinding>() {
         }
     }
 
-    fun getDate(dateStr: String) : String{
+    fun getDate(dateStr: String?) : String{
         try {
             val parser =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
             val formatter = SimpleDateFormat("dd MMMM yyyy")

@@ -2,12 +2,14 @@ package com.example.physics_lab.ui.class_list
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.LottieAnimationView
 import com.example.physics_lab.R
 import com.example.physics_lab.data.ClassRoomItem
 import com.example.physics_lab.databinding.FragmentStudClassScreenBinding
@@ -126,6 +128,16 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
 
         })
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
+        viewModel.lostConnect.observe(viewLifecycleOwner, {
+            adapter.clear()
+            val emptyLayout = view.findViewById<LinearLayout>(R.id.emptyLayout)
+            if (it == true) {
+                emptyLayout.visibility = View.VISIBLE
+            }
+            else {
+                emptyLayout.visibility = View.INVISIBLE
+            }
+        })
     }
 
     private fun initText(view: View) {

@@ -19,6 +19,7 @@ class LabDescriptionViewModel (context: Context) : BaseViewModel() {
     private val authService = AuthService(context)
     private val labService = LabService(context)
     val labDescrData = MutableLiveData<Lab>()
+    val lostConnect = MutableLiveData<Boolean>()
 
     fun loadClassDescrStudent() {
         val token = authService.token ?: return
@@ -28,7 +29,7 @@ class LabDescriptionViewModel (context: Context) : BaseViewModel() {
                     ClassRepository.loadLabDescr(token, labId)
                 }
                 if(response == null){
-                    apiExceptionData.value = "Невозможно получить запрос"
+                    apiExceptionData.value = "Невозможно выполнить запрос, проверьте подключение к интернету."
                 }
                 else {
                     labDescrData.value = response

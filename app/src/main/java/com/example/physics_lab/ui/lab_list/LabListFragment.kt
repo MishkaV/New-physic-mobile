@@ -184,6 +184,17 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
         })
         viewModel.removeResponse.observe(viewLifecycleOwner, removeObserver)
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
+
+        viewModel.lostConnect.observe(viewLifecycleOwner, {
+            adapter.clear()
+            val emptyLayout = view.findViewById<LinearLayout>(R.id.emptyLabLayout)
+            if (it == true) {
+                emptyLayout.visibility = View.VISIBLE
+            }
+            else {
+                emptyLayout.visibility = View.INVISIBLE
+            }
+        })
     }
 
     private fun initText(view: View) {

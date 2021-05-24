@@ -39,7 +39,7 @@ class FinishLab : BaseFragment<FragmentFinishLabBinding>() {
         viewModel.activeFinishData.observe(viewLifecycleOwner, { rawData ->
             adapter.clear()
             rawData.finishedSolutions.map {
-                LabListItem(it.lab)
+                adapter.add(LabListItem(it.lab))
             }
             adapter.notifyDataSetChanged()
             val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyFinishLabLayout)

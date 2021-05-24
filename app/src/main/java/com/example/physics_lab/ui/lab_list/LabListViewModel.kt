@@ -17,6 +17,7 @@ class LabListViewModel(context: Context) : BaseViewModel() {
     private val classService = ClassService(context)
     val classData = MutableLiveData<ClassRoomItem>()
     val removeResponse = MutableLiveData<Unit>()
+    val lostConnect = MutableLiveData<Boolean>()
 
     fun loadTeacherClass() {
         val token = authService.token
@@ -26,10 +27,15 @@ class LabListViewModel(context: Context) : BaseViewModel() {
                 val response = withContext(Dispatchers.IO) {
                     LabRepository.loadLabsForTeacher(token, classId)
                 }
+
                 if (response.singleItem != null && response.Message == null) {
+                    lostConnect.value = false
                     classData.value = response.singleItem
                 } else if (response.Message != null) {
                     apiExceptionData.value = response.Message
+                }
+                if (response.singleItem == null) {
+                    lostConnect.value = true
                 }
             }
         }
@@ -45,9 +51,13 @@ class LabListViewModel(context: Context) : BaseViewModel() {
                     LabRepository.loadLabsForStudent(token, classId)
                 }
                 if (response.singleItem != null && response.Message == null) {
+                    lostConnect.value = false
                     classData.value = response.singleItem
                 } else if (response.Message != null) {
                     apiExceptionData.value = response.Message
+                }
+                if (response.singleItem == null) {
+                    lostConnect.value = true
                 }
             }
         }

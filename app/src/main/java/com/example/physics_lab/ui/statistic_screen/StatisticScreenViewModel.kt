@@ -88,4 +88,6 @@ class StatisticScreenViewModel(context: Context) : BaseViewModel()  {
             }
         }
     }
+
+
 }

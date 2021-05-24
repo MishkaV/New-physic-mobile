@@ -3,10 +3,7 @@ package com.example.physics_lab.ui.solved_works
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.physics_lab.data.ActiveFinishData
-import com.example.physics_lab.data.ActiveSolutionData
-import com.example.physics_lab.data.ClassRoomItem
-import com.example.physics_lab.data.Lab
+import com.example.physics_lab.data.*
 import com.example.physics_lab.network.ClassRepository
 import com.example.physics_lab.network.LabRepository
 import com.example.physics_lab.service.AuthService
@@ -23,7 +20,7 @@ class SolvedWorksViewModel (context: Context) : BaseViewModel() {
     private val labService = LabService(context)
     private val classService = ClassService(context)
     val activeSolution = MutableLiveData<ActiveSolutionData>()
-    val classData = MutableLiveData<ClassRoomItem>()
+    val classData = MutableLiveData<ClassUserData>()
     val removeResponse = MutableLiveData<Unit>()
 
     fun loadActiveSolution() {
@@ -48,12 +45,13 @@ class SolvedWorksViewModel (context: Context) : BaseViewModel() {
         if (token != null && classId != null) {
             scopeMain.launch {
                 val response = withContext(Dispatchers.IO) {
-                    LabRepository.loadLabsForTeacher(token, classId)
+                    LabRepository.loadRawLabsForTeacher(token, classId)
                 }
-                if (response.singleItem != null && response.Message == null) {
-                    classData.value = response.singleItem
-                } else if (response.Message != null) {
-                    apiExceptionData.value = response.Message
+                if(response == null){
+                    apiExceptionData.value = "Невозможно получить запрос"
+                }
+                else {
+                    classData.value = response
                 }
             }
         }

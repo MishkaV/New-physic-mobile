@@ -1,6 +1,7 @@
 package com.example.physics_lab.ui.lab_list.active_lab
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +49,7 @@ class ActiveLabs  : BaseFragment<FragmentActiveLabsBinding>() {
         viewModel.activeFinishData.observe(viewLifecycleOwner, { rawData ->
             adapter.clear()
             rawData.activeSolutions.map {
-                LabListItem(it.lab)
+                adapter.add(LabListItem(it.lab))
             }
             adapter.notifyDataSetChanged()
             val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyActiveLabLayout)
