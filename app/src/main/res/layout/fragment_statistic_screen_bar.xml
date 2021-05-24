@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.example.physics_lab.ui.statistic_screen.stat_bat.StatisticScreenBarViewModel" />
 
     </data>
 
@@ -13,7 +16,7 @@
         android:weightSum="12">
 
         <TextView
-            android:id="@+id/statisticText"
+            android:id="@+id/statisticBarText"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -30,7 +33,7 @@
             android:layout_weight="11">
 
             <LinearLayout
-                android:id="@+id/emptyStatisticLayout"
+                android:id="@+id/emptyStatisticBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="invisible"
@@ -50,7 +53,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/emptyStatisticMainText"
+                    android:id="@+id/emptyStatisticBarMainText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -62,7 +65,7 @@
                     android:textSize="25dp" />
 
                 <TextView
-                    android:id="@+id/emptyDesrpText"
+                    android:id="@+id/emptyBarDesrpText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4"
@@ -77,14 +80,13 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewStatistic"
+                android:id="@+id/recyclerViewStatisticBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"/>
 
-
             <com.getbase.floatingactionbutton.FloatingActionsMenu
-                android:id="@+id/menu_class_statistic"
+                android:id="@+id/menu_class_statistic_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
@@ -98,14 +100,14 @@
 
 
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/toBarChart"
+                    android:id="@+id/toPieChart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     fab:fab_colorNormal="@color/colorMainWhite"
-                    fab:fab_icon="@drawable/ic_bar_chart"
-                    fab:fab_title="Столбчатые диаграммы"/>
+                    fab:fab_icon="@drawable/ic_pie_chart"
+                    fab:fab_title="Круговые диаграммы"/>
 
             </com.getbase.floatingactionbutton.FloatingActionsMenu>
-        </FrameLayout>
+         </FrameLayout>
     </LinearLayout>
 </layout>

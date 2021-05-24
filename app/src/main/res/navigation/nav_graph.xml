@@ -148,5 +148,13 @@
     <fragment
         android:id="@+id/statisticScreenFragment"
         android:name="com.example.physics_lab.ui.statistic_screen.StatisticScreen"
-        android:label="StatisticScreenFragment" />
+        android:label="StatisticScreenFragment" >
+        <action
+            android:id="@+id/action_statisticScreenFragment_to_statisticScreenBarFragment"
+            app:destination="@id/statisticScreenBarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticScreenBarFragment"
+        android:name="com.example.physics_lab.ui.statistic_screen.stat_bat.StatisticScreenBar"
+        android:label="StatisticScreenBarFragment" />
 </navigation>

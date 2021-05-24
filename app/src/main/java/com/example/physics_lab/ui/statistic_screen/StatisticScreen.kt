@@ -15,6 +15,7 @@ import com.example.physics_lab.service.ClassService
 import com.example.physics_lab.service.StatisticService
 import com.example.physics_lab.ui._base.BaseFragment
 import com.example.physics_lab.ui._items.StatisticPieChartItem
+import com.getbase.floatingactionbutton.FloatingActionButton
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 
@@ -50,6 +51,7 @@ class StatisticScreen : BaseFragment<FragmentStatisticScreenBinding>() {
         setUpRecycler()
         observeFields(view)
         initData()
+        setOnClick(view)
     }
 
     private fun setUpRecycler() {
@@ -135,5 +137,12 @@ class StatisticScreen : BaseFragment<FragmentStatisticScreenBinding>() {
         listData.put(theme, arrayListPieData)
 
         return listData
+    }
+
+    private fun setOnClick(view: View) {
+        val button = view.findViewById<FloatingActionButton>(R.id.toBarChart)
+        button.setOnClickListener {
+            navController.navigate(R.id.action_statisticScreenFragment_to_statisticScreenBarFragment)
+        }
     }
 }
