@@ -2,6 +2,7 @@ package com.example.physics_lab.ui.lab_list
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -165,10 +166,16 @@ class LabListFragment : BaseFragment<FragmentLabListBinding>() {
                     LabListItem(lab)
                 })
             }
+            if (classRooms.labs != null)
+                statisticService.saveCountLabs(classRooms.labs.size.toFloat())
+            if (classRooms.userClasses != null)
+                statisticService.saveCountUsersInClass(classRooms.userClasses.size.toFloat())
+
             adapter.notifyDataSetChanged()
             val emptyLabLayout = view.findViewById<LinearLayout>(R.id.emptyLabLayout)
-            if (adapter.itemCount == 0) {
+            if (adapter.itemCount == 0 || classRooms == null) {
                 initText(view)
+                adapter.clear()
                 emptyLabLayout.visibility = View.VISIBLE
             }
             else {

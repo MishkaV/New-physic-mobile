@@ -109,13 +109,15 @@ class ClassListFragment : BaseFragment<FragmentStudClassScreenBinding>() {
     private fun observeFields(view: View) {
         viewModel.classData.observe(viewLifecycleOwner, { classRooms ->
             adapter.clear()
+            statisticService.saveCountClasses(classRooms.size.toFloat())
             adapter.addAll(classRooms.map {
                 ClassListItem(it)
             })
             adapter.notifyDataSetChanged()
             val emptyLayout = view.findViewById<LinearLayout>(R.id.emptyLayout)
-            if (adapter.itemCount == 0) {
+            if (adapter.itemCount == 0 || classRooms == null) {
                 initText(view)
+                adapter.clear()
                 emptyLayout.visibility = View.VISIBLE
             }
             else {

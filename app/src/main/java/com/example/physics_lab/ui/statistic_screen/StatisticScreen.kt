@@ -49,9 +49,7 @@ class StatisticScreen : BaseFragment<FragmentStatisticScreenBinding>() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
         observeFields(view)
-        loadData()
-//        initButtons(view)
-//        setOnClick()
+        initData()
     }
 
     private fun setUpRecycler() {
@@ -61,98 +59,62 @@ class StatisticScreen : BaseFragment<FragmentStatisticScreenBinding>() {
         }
     }
 
-    private fun loadData() {
-        val role = authService.role
-        if (statisticService.prevLayout != null) {
-            if (role == "student") {
-                when (statisticService.prevLayout) {
-                    "classes" -> {
-                        viewModel.loadStudentClasses()
-                    }
-                    "labs" -> {
-                        viewModel.loadStudentClass()
-                    }
+    private fun initData() {
+        listData = ArrayMap<String, ArrayList<PieChartData>>()
+        when (statisticService.prevLayout) {
+            "classes" -> {
+                adapter.clear()
+                listData = putData(listData, generateByCountClasses(statisticService.countClasses), "Классы")
+                listData.map {
+                    adapter.add(StatisticPieChartItem(it.key, it.value))
                 }
+                adapter.notifyDataSetChanged()
             }
-            if (role == "teacher") {
-                viewModel.loadTeacherClasses()
-                when (statisticService.prevLayout) {
-                    "classes" -> {
-                        viewModel.loadTeacherClasses()
-                    }
-                    "labs" -> {
-                        viewModel.loadTeacherClass()
-                    }
+            "labs" -> {
+                adapter.clear()
+                listData = putData(listData, generateByCountLabs(statisticService.countLabs), "Задания")
+                listData = putData(listData, generateByUsers(statisticService.countLabs), "Пользователи")
+                listData.map {
+                    adapter.add(StatisticPieChartItem(it.key, it.value))
                 }
+                adapter.notifyDataSetChanged()
             }
         }
     }
 
     private fun observeFields(view: View) {
-        viewModel.classData.observe(viewLifecycleOwner, { classRooms ->
-            listData = ArrayMap<String, ArrayList<PieChartData>>()
-            adapter.clear()
-            initClassesData(classRooms)
-            listData.map {
-                adapter.add(StatisticPieChartItem(it.key, it.value))
-            }
-            adapter.notifyDataSetChanged()
-        })
         viewModel.apiExceptionData.observe(viewLifecycleOwner, apiExceptionObserver)
-        viewModel.singleClassData.observe(viewLifecycleOwner, { classRoom ->
-            listData = ArrayMap<String, ArrayList<PieChartData>>()
-            adapter.clear()
-            initClassData(classRoom)
-            listData.map {
-                adapter.add(StatisticPieChartItem(it.key, it.value))
-            }
-            adapter.notifyDataSetChanged()
-        })
     }
 
-    private fun initClassData(classRoom: ClassUserData) {
-        var data = generateByCountLabs(classRoom)
-        if (data != null)
-            listData = putData(listData, data, "Задания")
-        data = generateByUsers(classRoom)
-        if (data != null)
-            listData = putData(listData, data, "Пользователи")
-    }
-
-    private fun initClassesData(classRooms: List<ClassRoomItem>) {
-        listData = putData(listData, generateByCountClasses(classRooms), "Классы")
-    }
-
-    private fun generateByCountLabs(item: ClassUserData): HashMap<String, Float>? {
+    private fun generateByCountLabs(countLabs: Float?): HashMap<String, Float> {
         var listData = HashMap<String, Float>()
 
-        if (item.labs != null) {
-            listData["Количество заданий"] = item.labs.size.toFloat()
+        if (countLabs != null) {
+            listData["Количество заданий"] = countLabs
         } else {
-            return null
+            listData["Количество заданий"] = 0F
         }
 
         return listData
     }
 
-    private fun generateByUsers(item: ClassUserData): HashMap<String, Float>? {
+    private fun generateByUsers(countUsers: Float?): HashMap<String, Float> {
         var listData = HashMap<String, Float>()
 
-        if (item.users != null) {
-            listData["Количество пользователей"] = item.users.size.toFloat()
+        if (countUsers != null) {
+            listData["Количество пользователей"] = countUsers
         } else {
-            return null
+            listData["Количество пользователей"] = 0F
         }
         return listData
     }
 
-    private fun generateByCountClasses(item: List<ClassRoomItem>): HashMap<String, Float> {
+    private fun generateByCountClasses(countClasses: Float?): HashMap<String, Float> {
         var listData = HashMap<String, Float>()
-        if (item != null) {
-            listData["Количество классов"] = item.size.toFloat()
-        } else {
+        if (countClasses != null)
+            listData["Количество классов"] = countClasses
+        else
             listData["Количество классов"] = 0F
-        }
         return listData
     }
 
