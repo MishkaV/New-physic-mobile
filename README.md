@@ -52,7 +52,7 @@
 
 <table>
 <tr>
-  <td align="center">Добавление в класс</td>
+  <td align="center">Создание класса</td>
   <td align="center">Информация о классе</td>
 </tr>
 <tr>
