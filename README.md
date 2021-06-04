@@ -4,7 +4,8 @@
 
 <table>
 <tr>
-<td align="center">Примеры экранов</td>
+<td align="center">Экран активных работ/td>
+<td align="center">ПЭкран завершенных работ</td>
 </tr>
 <tr>
 <td><img src="https://user-images.githubusercontent.com/54765046/120822819-79be1f00-c55f-11eb-8e30-64f44671d15f.gif"></td>
@@ -15,7 +16,8 @@
 
 <table>
 <tr>
-<td align="center">Авторизация и регистрация</td>
+<td align="center">Авторизация</td>
+<td align="center">Регистрация</td>
 </tr>
 <tr>
 <td>
